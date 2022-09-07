@@ -2,12 +2,12 @@
 /**
  * 
  */
-class procedimientos
+class DatabaseConnection
 {
     public $db;
     public function __construct()
     {
-        require_once 'inf.php';
+        require_once 'Variables.php';
         try{
             $this->db = new PDO('mysql:host='.server.';dbname='.db, user, pass);
         }catch(PDOException $e){

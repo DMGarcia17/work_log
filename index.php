@@ -7,7 +7,7 @@
     <title>New Site</title>
 </head>
 <body>
-    <form action="Controllers/DailyLog.php" method="post">
+    <form action="controllers/DailyLog.php" method="post">
         <label for="file">File</label><input type="text" name="file" id=""><br>
         <label for="datetime">Date and Time</label><input type="datetime" name="date" id=""><br>
         <label for="details">Details</label><input type="text" name="details" id=""><br>

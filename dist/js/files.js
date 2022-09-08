@@ -8,6 +8,15 @@ $(document).ready(function() {
             {"data" : null, render : function (data, type, row, meta) {
                 return '<button class="btn btn-sm btn-success"><i class="fa fa-edit"></i></button>';
             } }
+        ],
+        dom: 'Bfrtip',
+        "buttons" : [
+            {
+                text: 'Add',
+                action: function (e, dt, node, config) {
+                    $('#staticBackdrop').modal();
+                }
+            }
         ]
     });
 });

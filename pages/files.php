@@ -20,6 +20,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href=<?php echo $base."plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" ?>>
   <link rel="stylesheet" href=<?php echo $base."plugins/datatables-responsive/css/responsive.bootstrap4.min.css" ?>>
   <link rel="stylesheet" href=<?php echo $base."plugins/datatables-buttons/css/buttons.bootstrap4.min.css" ?>>
+  <link rel="stylesheet" href=<?php echo $base."plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css"?>>
   <!-- Theme style -->
   <link rel="stylesheet" href=<?php echo $base."dist/css/adminlte.min.css"?>>
 </head>
@@ -88,10 +89,55 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </div>
 <!-- ./wrapper -->
 
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="name">File Name</label>
+            <input type="text" name="name" id="fileName" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="extension">Extension</label>
+            <select name="extension" id="fileExtension" class="form-control">
+              <?php
+                require_once $base.'core/Connection.php';
+
+                $db = new DatabaseConnection();
+
+                $res = $db->blankect_query('file_extensions', '*');
+                foreach($res as $r){
+                  echo '<option value="'.$r['ID'].'">'.$r['extension'].'</option>';
+                }
+              ?>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
 <script src=<?php echo $base."plugins/jquery/jquery.min.js"?>></script>
+<!-- Bootstrap 4 -->
+<script src=<?php echo $base."plugins/bootstrap/js/bootstrap.bundle.min.js"?>></script>
 <!-- jQuery DataTable-->
 <script src=<?php echo $base."plugins/datatables/jquery.dataTables.min.js"?>></script>
 <script src=<?php echo $base."plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"?>></script>
@@ -102,11 +148,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src=<?php echo $base."plugins/datatables-buttons/js/buttons.html5.min.js"?>></script>
 <script src=<?php echo $base."plugins/datatables-buttons/js/buttons.print.min.js"?>></script>
 <script src=<?php echo $base."plugins/datatables-buttons/js/buttons.colVis.min.js"?>></script>
-<!-- Bootstrap 4 -->
-<script src=<?php echo $base."plugins/bootstrap/js/bootstrap.bundle.min.js"?>></script>
 <!-- AdminLTE App -->
 <script src=<?php echo $base."dist/js/adminlte.min.js" ?>></script>
 <!-- Data table files -->
 <script src=<?php echo $base."dist/js/files.js" ?>></script>
 </body>
 </html>
+
+

@@ -44,9 +44,20 @@ class DatabaseConnection
         return $res;
     }
 
-    public function insert($sql)
+    public function insert($table, $fields, $values)
     {
-    $query = $this->db->prepare($sql);
+    $query = $this->db->prepare("insert into {$table}({$fields}) values ({$values})");
+    try{
+      $res = $query->execute();
+    }catch (PDOException $e){
+      $res = $e->getMessage();
+    }
+    return $res;
+    }
+
+    public function update($table, $condition, $values)
+    {
+    $query = $this->db->prepare("update {$table} set {$values} where {$condition}");
     try{
       $res = $query->execute();
     }catch (PDOException $e){

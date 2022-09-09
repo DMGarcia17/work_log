@@ -21,6 +21,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href=<?php echo $base."plugins/datatables-responsive/css/responsive.bootstrap4.min.css" ?>>
   <link rel="stylesheet" href=<?php echo $base."plugins/datatables-buttons/css/buttons.bootstrap4.min.css" ?>>
   <link rel="stylesheet" href=<?php echo $base."plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css"?>>
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href=<?php echo $base."plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css"?>>
+  <!-- Toastr -->
+  <link rel="stylesheet" href=<?php echo $base."plugins/toastr/toastr.min.css"?>>
   <!-- Theme style -->
   <link rel="stylesheet" href=<?php echo $base."dist/css/adminlte.min.css"?>>
 </head>
@@ -106,9 +110,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <label for="name">File Name</label>
             <input type="text" name="name" id="fileName" class="form-control">
           </div>
+          <input type="hidden" name="fileId" id="fileId">
           <div class="form-group">
             <label for="extension">Extension</label>
-            <select name="extension" id="fileExtension" class="form-control">
+            <select name="extension" id="fileExtension" class="form-control" required>
               <?php
                 require_once $base.'core/Connection.php';
 
@@ -125,7 +130,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
+        <button type="button" class="btn btn-primary" onClick="saveFile(files)">Save</button>
       </div>
     </div>
   </div>
@@ -150,6 +155,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src=<?php echo $base."plugins/datatables-buttons/js/buttons.colVis.min.js"?>></script>
 <!-- AdminLTE App -->
 <script src=<?php echo $base."dist/js/adminlte.min.js" ?>></script>
+<!-- SweetAlert2 -->
+<script src=<?php echo $base."plugins/sweetalert2/sweetalert2.min.js"?>></script>
+<!-- Toastr -->
+<script src=<?php echo $base."plugins/toastr/toastr.min.js"?>></script>
 <!-- Data table files -->
 <script src=<?php echo $base."dist/js/files.js" ?>></script>
 </body>

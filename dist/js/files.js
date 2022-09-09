@@ -6,7 +6,7 @@ $(document).ready(function() {
             {"data" : "name"},
             {"data" : "extension"},
             {"data" : null, render : function (data, type, row, meta) {
-                return '<button class="btn btn-sm btn-success"><i class="fa fa-edit"></i></button>';
+                return '<button class="btn btn-xs btn-success"><i class="fa fa-edit"></i></button>';
             } }
         ],
         dom: 'Bfrtip',
@@ -14,9 +14,44 @@ $(document).ready(function() {
             {
                 text: 'Add',
                 action: function (e, dt, node, config) {
-                    $('#staticBackdrop').modal();
+                    $('#staticBackdrop').modal('toggle');
                 }
             }
         ]
     });
 });
+
+
+let saveFile = () => {
+    if ($('#fileName').val() != undefined && $('#fileExtension').val() != undefined) {
+        $.ajax({
+            type  : 'post',
+            url   : '../controllers/functions.php',
+            data  : {
+                      'ID': $('#fileId').val(),
+                      'name' : $('#fileName').val(),
+                      'extension' : $('#fileExtension').val(),
+                      'function' : 'sf'
+                    },
+            success: function (res) {
+                let Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000
+                  });
+
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'Data saved successful!'
+                  });
+
+                  
+                  $('#staticBackdrop').modal('toggle');
+
+                  $('#files').DataTable().ajax.reload();
+
+            }
+          });
+    }
+};

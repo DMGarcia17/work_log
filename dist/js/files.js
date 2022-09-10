@@ -26,7 +26,7 @@ let saveFile = () => {
     if ($('#fileName').val() != undefined && $('#fileExtension').val() != undefined) {
         $.ajax({
             type  : 'post',
-            url   : '../controllers/functions.php',
+            url   : '../controllers/fileProcess.php',
             data  : {
                       'ID': $('#fileId').val(),
                       'name' : $('#fileName').val(),

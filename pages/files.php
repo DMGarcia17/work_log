@@ -53,7 +53,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <th>ID</th>
                             <th>Name</th>
                             <th>Extesion</th>
-                            <th>Complete</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -80,11 +80,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </div>
 <!-- ./wrapper -->
 <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="addFile" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="addFileLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Add / Modify File</h5>
+        <h5 class="modal-title" id="addFileLabel">Add / Modify File</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

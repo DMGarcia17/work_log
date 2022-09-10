@@ -10,6 +10,17 @@ function saveFile($id, $name, $extension){
     return $res;
 }
 
-if ($_POST['function'] == 'sf'){
-    echo saveFile($_POST['ID'], $_POST['name'],$_POST['extension']);
+function loadFile($id){
+    $db = new DatabaseConnection();
+    $res = $db->filtered_query('files a', 'a.ID, a.name, a.extension', 'ID='.$id);
+    echo json_encode($res);
+}
+
+switch ($_POST['function']){
+    case 'sf':
+        echo saveFile($_POST['ID'], $_POST['name'],$_POST['extension']);
+        break;
+    case 'ef':
+        loadFile($_POST['ID']);
+        break;
 }

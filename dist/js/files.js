@@ -6,8 +6,8 @@ $(document).ready(function() {
             {"data" : "name"},
             {"data" : "extension"},
             {"data" : null, render : function (data, type, row, meta) {
-                return '<button class="btn btn-xs btn-success"><i class="fa fa-edit"></i></button>'+
-                '<button class="btn btn-xs btn-success"><i class="fas fa-trash-alt"></i></button>';
+                return '<div class="btn-group" role="group"><button class="btn btn-xs btn-success" onClick="editFile('+data['ID']+')"><i class="fa fa-edit"></i></button>'+
+                '<button class="btn btn-xs btn-danger" onClick="deleteFile('+data['ID']+')"><i class="fas fa-trash-alt"></i></button></div>';
             } }
         ],
         dom: 'Bfrtip',
@@ -15,7 +15,7 @@ $(document).ready(function() {
             {
                 text: 'Add',
                 action: function (e, dt, node, config) {
-                    $('#staticBackdrop').modal('toggle');
+                    $('#addFile').modal('toggle');
                 }
             }
         ]
@@ -48,11 +48,30 @@ let saveFile = () => {
                   });
 
                   
-                  $('#staticBackdrop').modal('toggle');
+                  $('#addFile').modal('toggle');
 
                   $('#files').DataTable().ajax.reload();
 
             }
           });
     }
+};
+
+let editFile = (id) => {
+    $('#addFile').modal('toggle');
+    $.ajax({
+        type  : 'post',
+        url   : '../controllers/fileProcess.php',
+        data  : {
+                  'ID': id,
+                  'function' : 'ef'
+                },
+        success: function (res) {
+            let json = JSON.parse(res);
+            $('#fileId').val(json[0]['ID']);
+            $('#fileName').val(json[0]['name']);
+            $('#fileExtension').val(json[0]['extension']).change();
+
+        }
+      });
 };

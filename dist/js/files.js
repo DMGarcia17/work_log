@@ -6,7 +6,8 @@ $(document).ready(function() {
             {"data" : "name"},
             {"data" : "extension"},
             {"data" : null, render : function (data, type, row, meta) {
-                return '<button class="btn btn-xs btn-success"><i class="fa fa-edit"></i></button>';
+                return '<button class="btn btn-xs btn-success"><i class="fa fa-edit"></i></button>'+
+                '<button class="btn btn-xs btn-success"><i class="fas fa-trash-alt"></i></button>';
             } }
         ],
         dom: 'Bfrtip',

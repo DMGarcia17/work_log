@@ -7,7 +7,7 @@ $(document).ready(function() {
             {"data" : "extension"},
             {"data" : null, render : function (data, type, row, meta) {
                 return '<div class="btn-group" role="group"><button class="btn btn-xs btn-success" onClick="editFile('+data['ID']+')"><i class="fa fa-edit"></i></button>'+
-                '<button class="btn btn-xs btn-danger" onClick="deleteFile('+data['ID']+')"><i class="fas fa-trash-alt"></i></button></div>';
+                '<button class="btn btn-xs btn-danger" onClick="showDelFile('+data['ID']+')"><i class="fas fa-trash-alt"></i></button></div>';
             } }
         ],
         dom: 'Bfrtip',
@@ -75,3 +75,46 @@ let editFile = (id) => {
         }
       });
 };
+
+let deleteFile = (id) => {
+    console.log('File ID: '+id);
+    $.ajax({
+        type  : 'post',
+        url   : '../controllers/fileProcess.php',
+        data  : {
+                  'ID': id,
+                  'function' : 'df'
+                },
+        success: function (res) {
+            if (res == 'true'){
+                let Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000
+                  });
+
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'File deleted successful!'
+                  });
+
+                  
+                  $('#delFile').modal('toggle');
+
+                  $('#files').DataTable().ajax.reload();
+            }
+
+        }
+      });
+}
+
+let showDelFile = (id) => {
+    $('#idFileDel').val(id);
+    $('#delFile').modal('toggle');
+}
+
+let resetForm = ()=>{
+    $('#fileId').val(null);
+    $('#fileName').val(null);
+}

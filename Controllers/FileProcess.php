@@ -16,11 +16,20 @@ function loadFile($id){
     echo json_encode($res);
 }
 
+function delFile($id){
+    $db = new DatabaseConnection();
+    $res = $db->delete('files', 'ID='.$id);
+    echo json_encode($res);
+}
+
 switch ($_POST['function']){
     case 'sf':
         echo saveFile($_POST['ID'], $_POST['name'],$_POST['extension']);
         break;
     case 'ef':
         loadFile($_POST['ID']);
+        break;
+    case 'df':
+        delFile($_POST['ID']);
         break;
 }

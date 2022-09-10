@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $('#files').dataTable({
-        "ajax" : "test.php",
+        "ajax" : "../controllers/fileProcess.php",
         "columns" : [
             {"data" : "ID"},
             {"data" : "name"},

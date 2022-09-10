@@ -22,7 +22,19 @@ function delFile($id){
     echo json_encode($res);
 }
 
-switch ($_POST['function']){
+function queryFiles(){
+    $db = new DatabaseConnection();
+    $res = $db->blankect_query('files a', 'a.ID, a.name, (select b.extension from file_extensions b where b.ID = a.extension) extension');
+    $formated = array('data' => $res);
+    echo json_encode($formated);
+}
+
+$key="";
+if (isset($_POST['function'])){
+    $key=$_POST['function'];
+}
+
+switch ($key){
     case 'sf':
         echo saveFile($_POST['ID'], $_POST['name'],$_POST['extension']);
         break;
@@ -32,4 +44,6 @@ switch ($_POST['function']){
     case 'df':
         delFile($_POST['ID']);
         break;
+    default:
+        queryFiles();
 }

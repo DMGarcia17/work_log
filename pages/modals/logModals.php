@@ -1,15 +1,32 @@
 <!-- Add or modify modal -->
-<div class="modal fade" id="addFile" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="addFileLabel" aria-hidden="true">
+<div class="modal fade" id="addSummary" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="addSummaryLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="addFileLabel">Add / Modify File</h5>
+        <h5 class="modal-title" id="addSummaryLabel">Add / Modify File</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" onClick="resetForm()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form id="addFile">
+        <form id="addSummary">
+          <div class="form-group">
+            <label for="file">File</label>
+            <select name="file" id="fileName" class="form-control" required>
+              <?php
+                $db = new DatabaseConnection();
+
+                $res = $db->blankect_query('files', 'ID, name');
+                foreach($res as $r){
+                  echo '<option value="'.$r['ID'].'">'.$r['name'].'</option>';
+                }
+              ?>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="name">Date & Time</label>
+            <input type="text" name="name" id="fileName" class="form-control">
+          </div>
           <div class="form-group">
             <label for="name">File Name</label>
             <input type="text" name="name" id="fileName" class="form-control">
@@ -19,8 +36,6 @@
             <label for="extension">Extension</label>
             <select name="extension" id="fileExtension" class="form-control" required>
               <?php
-                require_once $base.'core/Connection.php';
-
                 $db = new DatabaseConnection();
 
                 $res = $db->blankect_query('file_extensions', '*');

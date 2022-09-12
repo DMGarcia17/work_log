@@ -36,9 +36,15 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                <a href="./pages/files.php" class="nav-link active">
+                <a href="./pages/files.php" class="nav-link" id="filesTagMenu">
                     <i class="far fa-file nav-icon"></i>
                     <p>Files</p>
+                </a>
+                </li>
+                <li class="nav-item">
+                <a href="./pages/dailyLog.php" class="nav-link" id="dsTagMenu">
+                    <i class="far fa-file nav-icon"></i>
+                    <p>Daily Summary</p>
                 </a>
                 </li>
                 <li class="nav-item">

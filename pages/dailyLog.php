@@ -1,5 +1,6 @@
 <?php
     $base = '../';
+    require_once $base.'core/Connection.php';
 ?>
 <!DOCTYPE html>
 <!--
@@ -10,7 +11,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Work Log | Daily Log </title>
+  <title>Work Log | </title>
   
   <!-- Stylesheets -->
   <?php include_once $base.'fragments/Stylesheets.php' ?>
@@ -47,7 +48,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <table class="table table-bordered table-striped" id="logs">
+                <table class="table table-bordered table-striped" id="dailyLog">
                     <thead>
                         <tr>
                             <th>ID</th>

@@ -1,14 +1,17 @@
 $(document).ready(function() {
-    $('#files').dataTable({
-        "ajax" : "test.php",
+    $('#dsTagMenu').addClass('active');
+    $('#dailyLog').dataTable({
+        "ajax" : "../controllers/DailyLogProcess.php",
         "columns" : [
-            {"data" : "ID"},
-            {"data" : "name"},
-            {"data" : "extension"},
+            {"data" : "ID", "width": "5%"},
+            {"data" : "file", "width": "5%"},
+            {"data" : "registration_date", "width": "15%"},
+            {"data" : "details", "width": "50%"},
+            {"data" : "state", "width": "15%"},
             {"data" : null, render : function (data, type, row, meta) {
                 return '<div class="btn-group" role="group"><button class="btn btn-xs btn-success" onClick="editFile('+data['ID']+')"><i class="fa fa-edit"></i></button>'+
                 '<button class="btn btn-xs btn-danger" onClick="showDelFile('+data['ID']+')"><i class="fas fa-trash-alt"></i></button></div>';
-            } }
+            }, "width": "10%" }
         ],
         dom: 'Bfrtip',
         "buttons" : [

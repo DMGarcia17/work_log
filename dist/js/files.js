@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    $('#filesTagMenu').addClass('active');
     $('#files').dataTable({
         "ajax" : "../controllers/fileProcess.php",
         "columns" : [

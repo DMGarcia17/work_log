@@ -1,7 +1,8 @@
+const process = '../controllers/DailyLogProcess.php';
 $(document).ready(function() {
     $('#dsTagMenu').addClass('active');
     $('#dailyLog').dataTable({
-        "ajax" : "../controllers/DailyLogProcess.php",
+        "ajax" : process,
         "columns" : [
             {"data" : "ID", "width": "5%"},
             {"data" : "file", "width": "5%"},
@@ -9,8 +10,8 @@ $(document).ready(function() {
             {"data" : "details", "width": "50%"},
             {"data" : "state", "width": "15%"},
             {"data" : null, render : function (data, type, row, meta) {
-                return '<div class="btn-group" role="group"><button class="btn btn-xs btn-success" onClick="editFile('+data['ID']+')"><i class="fa fa-edit"></i></button>'+
-                '<button class="btn btn-xs btn-danger" onClick="showDelFile('+data['ID']+')"><i class="fas fa-trash-alt"></i></button></div>';
+                return '<div class="btn-group" role="group"><button class="btn btn-xs btn-success" onClick="editDl('+data['ID']+')"><i class="fa fa-edit"></i></button>'+
+                '<button class="btn btn-xs btn-danger" onClick="showDelDl('+data['ID']+')"><i class="fas fa-trash-alt"></i></button></div>';
             }, "width": "10%" }
         ],
         dom: 'Bfrtip',
@@ -26,16 +27,18 @@ $(document).ready(function() {
 });
 
 
-let saveFile = () => {
-    if ($('#fileName').val() != undefined && $('#fileExtension').val() != undefined) {
+let saveDl = () => {
+    if ($('#registrationDate').val() != undefined && $('#fileName').val() != undefined) {
         $.ajax({
             type  : 'post',
-            url   : '../controllers/fileProcess.php',
+            url   : process,
             data  : {
-                      'ID': $('#fileId').val(),
-                      'name' : $('#fileName').val(),
-                      'extension' : $('#fileExtension').val(),
-                      'function' : 'sf'
+                      'ID': $('#summaryId').val(),
+                      'file' : $('#fileName').val(),
+                      'registrationDate' : $('#registrationDate').val(),
+                      'details' : $('#details').val(),
+                      'state' : $('#state').val(),
+                      'function' : 's'
                     },
             success: function (res) {
                 let Toast = Swal.mixin({
@@ -51,39 +54,41 @@ let saveFile = () => {
                   });
 
                   
-                  $('#addFile').modal('toggle');
+                  $('#addSummary').modal('toggle');
 
-                  $('#files').DataTable().ajax.reload();
+                  $('#dailyLog').DataTable().ajax.reload();
 
             }
           });
     }
 };
 
-let editFile = (id) => {
-    $('#addFile').modal('toggle');
+let editDl = (id) => {
+    $('#addSummary').modal('toggle');
     $.ajax({
         type  : 'post',
-        url   : '../controllers/fileProcess.php',
+        url   : process,
         data  : {
                   'ID': id,
-                  'function' : 'ef'
+                  'function' : 'e'
                 },
         success: function (res) {
             let json = JSON.parse(res);
-            $('#fileId').val(json[0]['ID']);
-            $('#fileName').val(json[0]['name']);
-            $('#fileExtension').val(json[0]['extension']).change();
+            $('#summaryId').val(json[0]['ID']);
+            $('#registrationDate').val(json[0]['registration_date']);
+            $('#details').val(json[0]['details']);
+            $('#fileName').val(json[0]['file']).change();
+            $('#state').val(json[0]['state']).change();
 
         }
       });
 };
 
-let deleteFile = (id) => {
+let deleteDl = (id) => {
     console.log('File ID: '+id);
     $.ajax({
         type  : 'post',
-        url   : '../controllers/fileProcess.php',
+        url   : process,
         data  : {
                   'ID': id,
                   'function' : 'df'
@@ -112,12 +117,13 @@ let deleteFile = (id) => {
       });
 }
 
-let showDelFile = (id) => {
+let showDelDl = (id) => {
     $('#idFileDel').val(id);
     $('#delFile').modal('toggle');
 }
 
 let resetForm = ()=>{
-    $('#fileId').val(null);
-    $('#fileName').val(null);
+    $('#summaryId').val(null);
+    $('#details').val(null);
+    $('#registrationDate').val(null);
 }

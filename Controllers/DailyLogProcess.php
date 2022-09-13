@@ -1,18 +1,19 @@
 <?php
 require_once '../core/Connection.php';
-function saveFile($id, $name, $extension){
+function saveSummary($id){
     $db = new DatabaseConnection();
+    
     if ($id == null) {
-        $res = $db->insert('files', 'name, extension', "'{$_POST['name']}', {$_POST['extension']}");
+        $res = $db->insert('daily_log', 'file, registration_date, details, state', "'{$_POST['file']}', str_to_date('{$_POST['registrationDate']}', \'%d/%m/%Y %H:%i:%s\'), '{$_POST['details']}', '{$_POST['state']}'");
     }else{
-        $res = $db->update('files', "ID={$_POST['ID']}", "name='{$_POST['name']}', extension={$_POST['extension']}");
+        $res = $db->update('daily_log', "ID={$_POST['ID']}", "file='{$_POST['file']}', registration_date=str_to_date('{$_POST['registrationDate']}', '%Y-%m-%dT%H:%i:%s'), details='{$_POST['details']}', state='{$_POST['state']}'");
     }
     return $res;
 }
 
 function loadFile($id){
     $db = new DatabaseConnection();
-    $res = $db->filtered_query('files a', 'a.ID, a.name, a.extension', 'ID='.$id);
+    $res = $db->filtered_query('daily_log a', 'a.ID, a.file, a.registration_date, a.details, a.state', 'ID='.$id);
     echo json_encode($res);
 }
 
@@ -35,13 +36,13 @@ if (isset($_POST['function'])){
 }
 
 switch ($key){
-    case 'sf':
-        echo saveFile($_POST['ID'], $_POST['name'],$_POST['extension']);
+    case 's':
+        echo saveSummary($_POST['ID']);
         break;
-    case 'ef':
+    case 'e':
         loadFile($_POST['ID']);
         break;
-    case 'df':
+    case 'd':
         delFile($_POST['ID']);
         break;
     default:

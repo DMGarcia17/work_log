@@ -83,7 +83,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </div>
 <!-- ./wrapper -->
 <!-- Modal -->
-<?php include_once 'modals/fileModals.php' ?>
+<?php include_once 'modals/logModals.php' ?>
 <!-- REQUIRED SCRIPTS -->
 <?php include_once $base.'fragments/scripts.php' ?>
 <!-- Data table files -->

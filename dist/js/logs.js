@@ -19,7 +19,8 @@ $(document).ready(function() {
             {
                 text: 'Add',
                 action: function (e, dt, node, config) {
-                    $('#addFile').modal('toggle');
+                    resetForm();
+                    $('#addSummary').modal('toggle');
                 }
             }
         ]

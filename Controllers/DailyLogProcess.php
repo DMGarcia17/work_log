@@ -4,7 +4,7 @@ function saveSummary($id){
     $db = new DatabaseConnection();
     
     if ($id == null) {
-        $res = $db->insert('daily_log', 'file, registration_date, details, state', "'{$_POST['file']}', str_to_date('{$_POST['registrationDate']}', \'%d/%m/%Y %H:%i:%s\'), '{$_POST['details']}', '{$_POST['state']}'");
+        $res = $db->insert('daily_log', 'file, registration_date, details, state', "'{$_POST['file']}', str_to_date('{$_POST['registrationDate']}', '%Y-%m-%dT%H:%i:%s'), '{$_POST['details']}', '{$_POST['state']}'");
     }else{
         $res = $db->update('daily_log', "ID={$_POST['ID']}", "file='{$_POST['file']}', registration_date=str_to_date('{$_POST['registrationDate']}', '%Y-%m-%dT%H:%i:%s'), details='{$_POST['details']}', state='{$_POST['state']}'");
     }

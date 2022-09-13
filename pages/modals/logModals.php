@@ -16,7 +16,7 @@
               <?php
                 $db = new DatabaseConnection();
 
-                $res = $db->blankect_query('files', 'ID, name');
+                $res = $db->filtered_query("files", "ID, name", "name is not null and trim(name) != ''");
                 foreach($res as $r){
                   echo '<option value="'.$r['ID'].'">'.$r['name'].'</option>';
                 }

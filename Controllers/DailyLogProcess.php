@@ -19,7 +19,7 @@ function loadFile($id){
 
 function delFile($id){
     $db = new DatabaseConnection();
-    $res = $db->delete('files', 'ID='.$id);
+    $res = $db->delete('daily_log', 'ID='.$id);
     echo json_encode($res);
 }
 

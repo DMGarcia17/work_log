@@ -91,7 +91,7 @@ let deleteDl = (id) => {
         url   : process,
         data  : {
                   'ID': id,
-                  'function' : 'df'
+                  'function' : 'd'
                 },
         success: function (res) {
             if (res == 'true'){
@@ -104,13 +104,13 @@ let deleteDl = (id) => {
 
                   Toast.fire({
                     icon: 'success',
-                    title: 'File deleted successful!'
+                    title: 'Record deleted successful!'
                   });
 
                   
-                  $('#delFile').modal('toggle');
+                  $('#delDl').modal('toggle');
 
-                  $('#files').DataTable().ajax.reload();
+                  $('#dailyLog').DataTable().ajax.reload();
             }
 
         }
@@ -118,8 +118,8 @@ let deleteDl = (id) => {
 }
 
 let showDelDl = (id) => {
-    $('#idFileDel').val(id);
-    $('#delFile').modal('toggle');
+    $('#idDlDel').val(id);
+    $('#delDl').modal('toggle');
 }
 
 let resetForm = ()=>{

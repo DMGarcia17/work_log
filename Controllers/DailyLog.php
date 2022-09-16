@@ -1,4 +1,5 @@
 <?php
+//TODO: delete file
     require_once '../core/Connection.php';
     $db = new DatabaseConnection();
     if (isset($_POST['file']) && $_POST['file'] != ''){

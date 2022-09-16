@@ -18,7 +18,7 @@ class DatabaseConnection
 
     public function blankect_query($table, $fields)
     {
-        $query = $this->db->prepare('select '.$fields.' from '.$table);
+        $query = $this->db->prepare('select '.$fields.' from '.$table.' order by 1');
         $query->execute();
         $res = $query->fetchAll(PDO::FETCH_ASSOC);
         return $res;

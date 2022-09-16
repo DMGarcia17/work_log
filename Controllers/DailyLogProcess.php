@@ -34,7 +34,7 @@ $key="";
 if (isset($_POST['function'])){
     $key=$_POST['function'];
 }
-
+//TODO: Change functions names
 switch ($key){
     case 's':
         echo saveSummary($_POST['ID']);

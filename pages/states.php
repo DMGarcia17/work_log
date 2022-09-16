@@ -11,7 +11,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Work Log | Summaries</title>
+  <title>Work Log | States</title>
   
   <!-- Stylesheets -->
   <?php include_once $base.'fragments/Stylesheets.php' ?>
@@ -36,7 +36,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="container-fluid">
         <div class="row mb-1">
           <div class="col-sm-12">
-            <h1 class="m-0">Daily Summary</h1>
+            <h1 class="m-0">States</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -48,13 +48,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <table class="table table-bordered table-striped" id="dailyLog">
+                <table class="table table-bordered table-striped" id="stateDt">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>File</th>
-                            <th>Date & Time</th>
-                            <th>Details</th>
                             <th>State</th>
                             <th>Actions</th>
                         </tr>
@@ -83,10 +80,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </div>
 <!-- ./wrapper -->
 <!-- Modal -->
-<?php include_once 'modals/logModals.php' ?>
+<?php include_once 'modals/statesModals.php' ?>
 <!-- REQUIRED SCRIPTS -->
 <?php include_once $base.'fragments/scripts.php' ?>
+
+<!-- Constants JS -->
+<?php //include_once $base.'fragments/constants.php' ?>
+
 <!-- Data table files -->
-<script src=<?php echo $base."dist/js/logs.js" ?>></script>
+<script src=<?php echo $base."dist/js/states.js" ?>></script>
 </body>
 </html>

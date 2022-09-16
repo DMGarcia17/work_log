@@ -11,19 +11,19 @@ function saveSummary($id){
     return $res;
 }
 
-function loadFile($id){
+function loadSummary($id){
     $db = new DatabaseConnection();
     $res = $db->filtered_query('daily_log a', 'a.ID, a.file, a.registration_date, a.details, a.state', 'ID='.$id);
     echo json_encode($res);
 }
 
-function delFile($id){
+function delSummary($id){
     $db = new DatabaseConnection();
     $res = $db->delete('daily_log', 'ID='.$id);
     echo json_encode($res);
 }
 
-function queryFiles(){
+function querySummaries(){
     $db = new DatabaseConnection();
     $res = $db->blankect_query('daily_log a', 'a.ID, (select name from files where id=a.ID) file, date_format(a.registration_date, \'%d/%m/%Y %H:%m:%s\') registration_date, a.details, (select description from states s where state=a.state) state');
     $formated = array('data' => $res);
@@ -34,17 +34,17 @@ $key="";
 if (isset($_POST['function'])){
     $key=$_POST['function'];
 }
-//TODO: Change functions names
+
 switch ($key){
     case 's':
         echo saveSummary($_POST['ID']);
         break;
     case 'e':
-        loadFile($_POST['ID']);
+        loadSummary($_POST['ID']);
         break;
     case 'd':
-        delFile($_POST['ID']);
+        delSummary($_POST['ID']);
         break;
     default:
-        queryFiles();
+        querySummaries();
 }

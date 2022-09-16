@@ -36,7 +36,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="container-fluid">
         <div class="row mb-1">
           <div class="col-sm-12">
-            <h1 class="m-0">Daily Summary</h1>
+            <h1 class="m-0">Summaries</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
